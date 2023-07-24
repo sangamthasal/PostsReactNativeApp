@@ -27,8 +27,8 @@ const Home_screen=({navigation})=>{
       <View style={styles.homeScreen}>
         <View style={styles.logoandsearchpart}>
           <TouchableOpacity style={styles.AppLogo}>
-            <View onTouchEnd={()=>navigation.navigate('Create')}>
-              <Text>My posts</Text>
+            <View onTouchEnd={()=>navigation.navigate('Home')}>
+              <Text style={{fontSize:20}}>My posts</Text>
             </View>
           </TouchableOpacity>
 
@@ -41,7 +41,7 @@ const Home_screen=({navigation})=>{
           <ScrollView>
           
             {
-                isLoading ? <Text>Loading....</Text> : (
+                isLoading ? <Text style={styles.loadintext}>Loading....</Text>: (
                     Post.posts.map((post)=>(
 
                         <PostCard key={post.id} post={post} navigation={navigation}/>
@@ -87,6 +87,10 @@ const styles = StyleSheet.create({
     borderBottomRightRadius:20,
     borderTopLeftRadius:20,
     borderTopRightRadius: 20,
+  },
+  loadintext:{
+   
+    textAlign:'center'
   }
 
 })

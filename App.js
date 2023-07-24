@@ -12,19 +12,22 @@ import {
 
 import BottomNavTabs from './src/NavigationFolder/BottomNavTabs';
 import { NavigationContainer } from '@react-navigation/native';
+import ContextState from './src/Context/ContextState';
 
 
 
 function App(){
 
   return (
+    
   <NavigationContainer>
-   
+    <ContextState>
       <StatusBar backgroundColor="black" />
-  
+     
       <BottomNavTabs/>
-      
+    </ContextState>
   </NavigationContainer>
+ 
   );
 }
 

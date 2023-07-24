@@ -31,7 +31,7 @@ const PostCard = (props) => {
   return (
     <View key={id} style={[styles.PostCard ,styles.elevation]}>
 
-        <View style={styles.titlepart} onTouchEnd={()=>props.navigation.navigate('Detail',{id:id,title:title,body:body,reactions:reaction,tags:tags,heart:heart,liked:clickonHeart,reactionchanged:changeReaction})}> 
+        <View style={styles.titlepart} onTouchEnd={()=>props.navigation.navigate('Detail',{id:id,title:title,body:body,reactions:reaction,tags:tags,heart:heart})}> 
             <Text>
                 Title : 
             </Text>

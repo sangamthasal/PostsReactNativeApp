@@ -9,20 +9,18 @@ const filledheart= 'cards-heart'
 
 const DetailPost = (props) => {
 
-    console.log(props.route.params.liked)
-
-    const likefun = props.route.params.liked;
-    console.log(likefun.clickonHeart)
-  
-   const{id,title,body,reactions,tags,heart,liked,reactionchanged} = {...props.route.params}
+   
+   const{id,title,body,reactions,tags,heart} = {...props.route.params}
   return (
     <View key={id} style={styles.Detailpart}>
        
        <View style={styles.detailCard}>     
             <View style={styles.postTitle}>
+                <Text>Title:</Text>
                 <Text>{title}</Text>
             </View>
             <View style={styles.postBody}>
+                <Text>Body:</Text>
                 <ScrollView>
                 
                     <Text style={styles.bodyText}>{body}</Text>
@@ -33,14 +31,20 @@ const DetailPost = (props) => {
                 <View style={styles.reaction}>
                 <TouchableOpacity style={styles.LikeButton}>
                     
-                    <Icon name={heart?outlineheart:filledheart} size={25} 
-
-                        
+                    <Icon name={heart?outlineheart:filledheart} 
+                        onPressIn={()=>{
+                            props.navigation.setParams({heart: !heart})
+                        }} 
+                        onPress={()=>{
+                            props.navigation.setParams(heart?{reactions:reactions-1}:{reactions:reactions+1})
+                        }}
+                    
+                        size={25} 
 
                     /> 
             
                 </TouchableOpacity>
-                    <Text style={styles.reactiontext}>{reactions}</Text>
+                    <Text style={styles.reactiontext}>{reactions} likes</Text>
                 </View>
                 <View style={styles.tagspart}>
                     {
@@ -59,15 +63,54 @@ const DetailPost = (props) => {
 const styles = StyleSheet.create({
     Detailpart:{
         flex:1,
-        backgroundColor:'red',
-        justifyContent:'center'
-    },
-    LikeButton:{ 
-        display:'flex',
+        backgroundColor:'skyblue',
+        justifyContent:'center',
         alignItems:'center',
-        justifyContent:'center'
+        
     },
-   
+    detailCard:{
+        
+        backgroundColor:'white',
+        padding:'5%',
+        width:'90%',
+        borderTopLeftRadius:10,
+        borderTopRightRadius:10,
+        borderBottomLeftRadius:10,
+        borderBottomEndRadius:10,
+        display:'flex',
+        justifyContent:'space-between',
+      
+       
+    },
+    postTitle:{
+        borderBottomWidth:0.3
+    },
+    postBody:{
+
+        height:'60%',
+        paddingHorizontal:'10%',
+        borderBottomWidth:0.4,
+    },
+    reaction:{ 
+        
+        width:'13%',
+        display:'flex',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',
+       
+        
+    },
+    tagspart:{
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        width:'60%',
+      
+    },
+    reactiontext:{
+        width:80,
+    }
 })
 
 export default DetailPost;
